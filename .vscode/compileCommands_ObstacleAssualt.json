@@ -1,0 +1,58 @@
+[
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\MovingPlatform.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\MovingPlatform.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\ObstacleAssualt.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\ObstacleAssualt.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\ObstacleAssualt.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\Test.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal\\ObstacleAssualt\\Source\\ObstacleAssualt\\Test.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal\\ObstacleAssualt\\.vscode\\compileCommands_ObstacleAssualt\\ObstacleAssualt.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	}
+]
