@@ -15,15 +15,25 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-	this->StartVector.X += 10;
-	this->SetActorLocation(this->StartVector);
+	this->StartLoc = this->GetActorLocation();
 }
 
 // Called every frame
 void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	this->StartVector.Z += 1;
-	this->StartVector.Y += 1;
-	this->SetActorLocation(StartVector);
+
+	FVector currLoc = this->GetActorLocation();
+	//currLoc = currLoc + this->MovingVelocity * DeltaTime;
+	currLoc += this->MovingVelocity * DeltaTime;
+	this->SetActorLocation(currLoc);
+	float distance = FVector::Dist(StartLoc, currLoc);
+	if (distance > this->MoveDistance) {
+		FVector direction = this->MovingVelocity.GetSafeNormal();
+		FVector nextStartLoc = this->StartLoc + direction * this->MoveDistance;
+		this->SetActorLocation(nextStartLoc);
+		this->StartLoc = nextStartLoc;
+		this->MovingVelocity = -(this->MovingVelocity);
+		return;
+	}
 }

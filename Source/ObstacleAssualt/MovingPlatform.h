@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "MovingPlatform.generated.h"
 
+
 UCLASS()
 class OBSTACLEASSUALT_API AMovingPlatform : public AActor
 {
@@ -14,6 +15,7 @@ class OBSTACLEASSUALT_API AMovingPlatform : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AMovingPlatform();
+	FVector StartLoc;
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,7 +24,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	UPROPERTY(EditAnywhere)
-	FVector StartVector = FVector(1, 2, 3);
+
+	UPROPERTY(EditAnywhere,Category="Moving Platform")
+	FVector MovingVelocity = FVector(100, 0, 0);
+
+	UPROPERTY(EditAnywhere, Category = "Moving Platform")
+	float MoveDistance = 100;
 
 };
