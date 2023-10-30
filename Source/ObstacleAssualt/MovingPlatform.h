@@ -15,13 +15,12 @@ class OBSTACLEASSUALT_API AMovingPlatform : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AMovingPlatform();
-	FVector StartLoc;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -31,4 +30,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Moving Platform")
 	float MoveDistance = 100;
 
+	FVector StartLoc;
+
+	void MovePlatform(float dt);
+	void RotatePlatform(float dt);
+	bool shouldPlatformReturn(FVector currLoc);
+	FVector GetDistanceMoved(float dt);
 };

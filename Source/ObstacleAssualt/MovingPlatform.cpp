@@ -16,19 +16,22 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 	this->StartLoc = this->GetActorLocation();
+	UE_LOG(LogTemp,Display,TEXT(""))
 }
 
 // Called every frame
 void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	this->MovePlatform(DeltaTime);
+	this->RotatePlatform(DeltaTime);
+}
 
+void AMovingPlatform::MovePlatform(float dt) 
+{
 	FVector currLoc = this->GetActorLocation();
-	//currLoc = currLoc + this->MovingVelocity * DeltaTime;
-	currLoc += this->MovingVelocity * DeltaTime;
-	this->SetActorLocation(currLoc);
-	float distance = FVector::Dist(StartLoc, currLoc);
-	if (distance > this->MoveDistance) {
+	
+	if (this->shouldPlatformReturn(currLoc) == true) {
 		FVector direction = this->MovingVelocity.GetSafeNormal();
 		FVector nextStartLoc = this->StartLoc + direction * this->MoveDistance;
 		this->SetActorLocation(nextStartLoc);
@@ -36,4 +39,22 @@ void AMovingPlatform::Tick(float DeltaTime)
 		this->MovingVelocity = -(this->MovingVelocity);
 		return;
 	}
+
+	currLoc += this->GetDistanceMoved(dt);
+	this->SetActorLocation(currLoc);
+}
+
+bool AMovingPlatform::shouldPlatformReturn(FVector currLoc) {
+	float distance = FVector::Dist(StartLoc, currLoc);
+	return distance > this->MoveDistance;
+}
+
+FVector AMovingPlatform::GetDistanceMoved(float dt) {
+	return this->MovingVelocity * dt;
+}
+
+void AMovingPlatform::RotatePlatform(float dt) 
+{
+	FString rotate = this->GetActorRotation().ToString();
+	UE_LOG(LogTemp, Display, TEXT("Delta Time : %f \nCurrent Rotation : %s"), dt, *rotate);
 }
