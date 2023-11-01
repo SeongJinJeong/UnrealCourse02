@@ -16,6 +16,7 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 	this->StartLoc = this->GetActorLocation();
+	this->StartScale = this->GetActorScale();
 	UE_LOG(LogTemp,Display,TEXT(""))
 }
 
@@ -25,6 +26,8 @@ void AMovingPlatform::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	this->MovePlatform(DeltaTime);
 	this->RotatePlatform(DeltaTime);
+	this->ScalePlatform(DeltaTime);
+	this->FallPlatform(DeltaTime);
 }
 
 void AMovingPlatform::MovePlatform(float dt) 
@@ -40,21 +43,51 @@ void AMovingPlatform::MovePlatform(float dt)
 		return;
 	}
 
-	currLoc += this->GetDistanceMoved(dt);
+	currLoc += this->MovingVelocity * dt;
 	this->SetActorLocation(currLoc);
 }
 
-bool AMovingPlatform::shouldPlatformReturn(FVector currLoc) {
-	float distance = FVector::Dist(StartLoc, currLoc);
+bool AMovingPlatform::shouldPlatformReturn(FVector currLoc) const {
+	float distance = this->GetDistanceMoved();
 	return distance > this->MoveDistance;
 }
 
-FVector AMovingPlatform::GetDistanceMoved(float dt) {
-	return this->MovingVelocity * dt;
+float AMovingPlatform::GetDistanceMoved() const {
+	return FVector::Dist(this->StartLoc, this->GetActorLocation());
 }
 
 void AMovingPlatform::RotatePlatform(float dt) 
 {
-	FString rotate = this->GetActorRotation().ToString();
-	UE_LOG(LogTemp, Display, TEXT("Delta Time : %f \nCurrent Rotation : %s"), dt, *rotate);
+	this->AddActorLocalRotation(this->RotateVelocity * dt);
+}
+
+void AMovingPlatform::ScalePlatform(float dt) {
+	if (this->GetActorScale().Y > this->StartScale.Y * this->ScaleSizeMultiple) {
+		FVector maximumScale = this->StartScale;
+		maximumScale.Y = this->StartScale.Y * this->ScaleSizeMultiple;
+		this->SetActorScale3D(maximumScale);
+
+		this->ScaleVelocity.Y = -(this->ScaleVelocity.Y);
+	}
+
+	if (this->GetActorScale().Y < this->StartScale.Y) {
+		this->SetActorScale3D(this->StartScale);
+		this->ScaleVelocity.Y = -(this->ScaleVelocity.Y);
+	}
+
+	FVector nextScale = this->GetActorScale() + (this->ScaleVelocity * dt / 100);
+	this->SetActorScale3D(nextScale);
+}
+
+void AMovingPlatform::FallPlatform(float dt) {
+	if (this->FallingDelay < 0)
+		return;
+
+	this->FallingElapsedTime += dt;
+	if (this->FallingElapsedTime >= this->FallingDelay) {
+		this->isPlatformVisible = !this->isPlatformVisible;
+		this->SetActorHiddenInGame(this->isPlatformVisible);
+		this->SetActorEnableCollision(!this->isPlatformVisible);
+		this->FallingElapsedTime = 0;
+	}
 }
